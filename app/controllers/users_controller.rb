@@ -33,7 +33,6 @@ class UsersController < ApplicationController
              respond_to do |format|
                  msg = { :errCode => 1, :count => 1 }
                  format.json { render :json => msg }
-                 redirect_to root_url, notice: "You have successfully logged out."
              end
           end
       else
