@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   
   def test
        msg = {}
-       result = %x[rake test]
+       result = IO.popen('rspec')
        msg[:output] = result
        msg[:totalTests] = 2
        msg[:nrFailed] = 2
