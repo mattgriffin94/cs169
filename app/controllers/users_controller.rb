@@ -21,12 +21,12 @@ class UsersController < ApplicationController
        result = %x[rake test]
        msg[:output] = result
        msg[:totalTests] = 2
-       msg[:nrFailed] = 0
+       msg[:nrFailed] = 2
 
        output = result.lines
        output.each do |l|
            words = l.split
-           if words[1]=="example," #last line
+           if words[1]=="1" #last line
                msg[:totalTests] = words[0].to_f
                msg[:nrFailed] = words[2].to_f
             end
