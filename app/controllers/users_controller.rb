@@ -20,7 +20,7 @@ class UsersController < ApplicationController
        msg = {}
        result = %x[rake test]
        msg[:output] = result
-       msg[:totalTests] = 0
+       msg[:totalTests] = 2
        msg[:nrFailed] = 0
 
        output = result.lines
