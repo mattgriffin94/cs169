@@ -19,11 +19,11 @@ class UsersController < ApplicationController
   def test
        msg = {}
        result = IO.popen('rspec')
-       msg[:output] = result
        msg[:totalTests] = 2
        msg[:nrFailed] = 2
 
-       output = result.lines
+       output = result.readlines
+       msg[:output] = output.join("")
        output.each do |l|
            words = l.split
            if words[1]=="1" #last line
