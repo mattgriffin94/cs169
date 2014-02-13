@@ -16,6 +16,27 @@ class UsersController < ApplicationController
       end
   end
   
+  def test
+       msg = {}
+       result = %x[rake test]
+       msg[:output] = result
+       msg[:totalTests] = 0
+       msg[:nrFailed] = 0
+
+       output = result.lines
+       output.each do |l|
+           words = l.split
+           if words[1]=="tests," #last line
+               msg[:totalTests] = words[0].to_f
+               msg[:nrFailed] = words[4].to_f + words[6].to_f
+            end
+        end
+       respond_to do |format|
+           format.json { render :json => msg }
+       end
+    end
+
+
   def add
       
      @name = params[:user]

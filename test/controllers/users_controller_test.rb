@@ -16,13 +16,22 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create user" do
+  test "should add user" do
     assert_difference('User.count') do
       post :create, user: { logins: @user.logins, name: @user.name, password: @user.password }
     end
 
     assert_redirected_to user_path(assigns(:user))
   end
+
+    test "should add 2 users" do
+        assert_difference('User.count',2) do
+            post :create, user: { logins: @user.logins, name: @user.name, password: @user.password }
+            post :create, user: { logins: @user.logins, name: @user.name, password: @user.password }
+        end
+        
+        assert_redirected_to user_path(assigns(:user))
+    end
 
   test "should show user" do
     get :show, id: @user
@@ -46,4 +55,22 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_redirected_to users_path
   end
+
+test "should reset" do
+    post :create, user: { logins: @user.logins, name: @user.name, password: @user.password }
+    post :reset, :format => :json
+    assert_equal(User.count,0)
+    
+end
+
+test "test user login" do
+    post :create, user: { logins: @user.logins, name: @user.name, password: @user.password }
+    assert_equal(@user.logins,1)
+    
+end
+
+
+
+
+
 end
