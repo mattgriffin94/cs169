@@ -3,6 +3,7 @@ Mysite::Application.routes.draw do
   root 'users#index'
   post 'users/add', :to => 'users#add'
   post 'users/login', :to => 'users#login'
+  match "/TESTAPI/resetFixture", :to => 'users#reset', via: [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

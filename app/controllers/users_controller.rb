@@ -7,6 +7,15 @@ class UsersController < ApplicationController
     @users = User.all
   end
   
+  
+  def reset
+      User.delete_all
+      respond_to do |format|
+          msg = { :errCode => 1 }
+          format.json { render :json => msg }
+      end
+  end
+  
   def add
       
      @name = params[:user]
