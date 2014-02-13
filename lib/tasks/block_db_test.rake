@@ -1,1 +1,1 @@
-Rake::Task[:spec].clear_prerequisites
+Rake::Task[:test].clear_prerequisites
