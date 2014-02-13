@@ -4,3 +4,5 @@
 require File.expand_path('../config/application', __FILE__)
 
 Mysite::Application.load_tasks
+
+Rake::Task[:spec].clear_prerequisites
