@@ -5,6 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Mysite::Application.load_tasks
 
-RSpec::Core::RakeTask.new(:test)
+Rake::Task[:spec].clear_prerequisites
 
-task :default => :test
+Rake::Task[:test].clear_prerequisites
