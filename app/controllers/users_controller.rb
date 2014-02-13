@@ -26,9 +26,9 @@ class UsersController < ApplicationController
        msg[:output] = output.join("")
        output.each do |l|
            words = l.split
-           if words[1]=="1" #last line
-               msg[:totalTests] = words[0].to_f
-               msg[:nrFailed] = words[2].to_f
+           if words[1]==1 #last line
+               msg[:totalTests] = words[0]
+               msg[:nrFailed] = words[2]
             end
         end
        respond_to do |format|
