@@ -18,17 +18,19 @@ class UsersController < ApplicationController
   
   def test
        msg = {}
-       result = IO.popen('rspec')
-       msg[:totalTests] = 2
-       msg[:nrFailed] = 2
+       result = %x[rspec]
+       p result
+       msg[:totalTests] = 0
+       msg[:nrFailed] = 0
 
-       output = result.readlines
-       msg[:output] = output.join("")
+       output = result.lines
+       msg[:output] = output.join("\n")
        output.each do |l|
            words = l.split
-           if words[1]=="1" #last line
-               msg[:totalTests] = words[0]
-               msg[:nrFailed] = words[2]
+           p words
+           if words[3]=="failures" #last line
+               msg[:totalTests] = words[0].to_f
+               msg[:nrFailed] = words[2].to_f
             end
         end
        respond_to do |format|

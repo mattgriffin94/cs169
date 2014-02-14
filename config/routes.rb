@@ -1,4 +1,6 @@
 Mysite::Application.routes.draw do
+  resources :users
+
     resources :users
   root 'users#index'
   post 'users/add', :to => 'users#add'
